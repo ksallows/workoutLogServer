@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 // { "user" : { "username" : "user", "password" : "password"}}
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM2MTMwNDIzLCJleHAiOjE2MzYyMTY4MjN9.B89T-ov0IPgTAZtsSA7jndU0Ru2E7NGU08nfyAjg61U
 
+// { "user" : { "username2" : "user", "password" : "password"}}
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjM2MTM2ODI3LCJleHAiOjE2MzYyMjMyMjd9.WYoXyUaMHlOfudCzg2tnQ89Q4EugBh8nCDGzs1Xs3xs
+
 router.post("/register", async (req, res) => {
     let { username, password } = req.body.user;
     try {

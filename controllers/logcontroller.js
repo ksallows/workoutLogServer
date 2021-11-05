@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Log } = require("../models");
 const validateSession = require("../middleware/validateSession");
+const e = require("express");
 //const util = require('util')
 
 // /log/ 	POST 	Allows users to create a workout log with descriptions, definitions, results, and owner properties.
@@ -75,18 +76,26 @@ router.put("/:id", validateSession, async (req, res) => {
         definition: definition,
         result: result
     }
-    const query = {
+    const logOwner = await Log.findAll({
         where: {
-            id: logID,
-            owner_id: userID
+            id: logID
         }
-    };
-    try {
-        const updatedLog = await Log.update(newLog, query);
-        res.status(200).json({ message: 'Log updated!' });
-    } catch (error) {
-        res.status(500).json({ error: error });
+    })
+    if (JSON.parse(JSON.stringify(logOwner, null, 2))[0].id == userID) {
+        const query = {
+            where: {
+                id: logID,
+                owner_id: userID
+            }
+        };
+        try {
+            const updatedLog = await Log.update(newLog, query);
+            res.status(200).json({ message: 'Log updated!' });
+        } catch (error) {
+            res.status(500).json({ error: error });
+        }
     }
+    else return res.status(403).json({ error: 'You can only update your own logs' })
 });
 
 // /log/:id 	DELETE 	Allows individual logs to be deleted by a user.
@@ -94,18 +103,26 @@ router.put("/:id", validateSession, async (req, res) => {
 router.delete("/:id", validateSession, async (req, res) => {
     const logID = req.params.id;
     const userID = req.user.id;
-    const query = {
+    const logOwner = await Log.findAll({
         where: {
-            id: logID,
-            owner_id: userID
+            id: logID
         }
-    };
-    try {
-        await Log.destroy(query);
-        res.status(200).json({ message: 'Log Deleted' });
-    } catch (error) {
-        res.status(500).json({ error: error });
+    })
+    if (JSON.parse(JSON.stringify(logOwner, null, 2))[0].id == userID) {
+        const query = {
+            where: {
+                id: logID,
+                owner_id: userID
+            }
+        };
+        try {
+            await Log.destroy(query);
+            res.status(200).json({ message: 'Log Deleted' });
+        } catch (error) {
+            res.status(500).json({ error: error });
+        }
     }
+    else return res.status(403).json({ error: 'You can only delete your own logs' })
 });
 
 module.exports = router;
