@@ -22,6 +22,7 @@
 /log/:id        PUT 	    Allows individual logs to be updated by a user.
 
 ![PUT /log/:id - postman](readmeImages/Postman_QY1yAztjPp.png)
+![PUT /log/:id - pgAdmin](readmeImages/pgAdmin4_JlIVfQerJD.png)
 
 /log/:id 	    DELETE 	    Allows individual logs to be deleted by a user.
 
