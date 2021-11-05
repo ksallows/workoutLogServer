@@ -13,7 +13,7 @@
 
 /log/           GET 	    Gets all logs for an individual user.
 
-![GET /log/ - postman](Postman_0slrHjunU3.png)
+![GET /log/ - postman](readmeImages/Postman_0slrHjunU3.png)
 
 /log/:id        GET         Gets individual logs by {{id}} for an individual user.
 
