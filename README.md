@@ -26,5 +26,5 @@
 
 /log/:id 	    DELETE 	    Allows individual logs to be deleted by a user.
 
-![DELETE /log/:id - postman](readmeImages/Postman_HofMIOneZF.png)
+![DELETE /log/:id - postman](readmeImages/Postman_hNh7gGZ1Ah.png)
 ![DELETE /log/:id - pgAdmin](readmeImages/pgAdmin4_0QLKdkmMmy.png)
